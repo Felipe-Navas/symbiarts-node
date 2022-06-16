@@ -1,5 +1,6 @@
 const { response } = require('express')
 const bcrypt = require('bcryptjs')
+
 const User = require('../models/User')
 const { generateToken } = require('../helpers/jwt')
 
@@ -67,7 +68,7 @@ const loginUser = async (req, res = response) => {
 
     res.json({
       ok: true,
-      msg: 'login',
+      msg: 'Login ok',
       uid: user._id,
       name: user.name,
       token,
@@ -88,6 +89,7 @@ const revalidateToken = async (req, res = response) => {
 
   res.json({
     ok: true,
+    msg: 'Token revalidated',
     token,
     uid,
     name,

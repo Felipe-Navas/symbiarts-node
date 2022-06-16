@@ -13,7 +13,7 @@ app.use(express.static('public'))
 
 app.use(express.json())
 
-// TODO: Add routes to /api/auth
+app.use('/api/auth', require('./routes/auth'))
 
 app.listen(process.env.PORT, () => {
   console.log(`Server listening on port ${process.env.PORT}`)
