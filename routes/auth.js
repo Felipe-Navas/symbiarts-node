@@ -4,6 +4,9 @@ const {
   createUser,
   loginUser,
   revalidateToken,
+  updateUser,
+  getUser,
+  getUsers,
 } = require('../controllers/auth')
 const { validateFields } = require('../middlewares/validate-field')
 const { validateJWT } = require('../middlewares/validate-jwt')
@@ -35,5 +38,11 @@ router.post(
 )
 
 router.get('/renew', validateJWT, revalidateToken)
+
+router.get('/users', getUsers)
+
+router.get('/:id', getUser)
+
+router.put('/:id', validateJWT, updateUser)
 
 module.exports = router
