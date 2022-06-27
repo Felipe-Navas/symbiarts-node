@@ -96,8 +96,99 @@ const revalidateToken = async (req, res = response) => {
   })
 }
 
+const getUser = async (req, res = response) => {
+  const { id } = req.params
+
+  try {
+    const user = await User.findById(id)
+
+    if (!user) {
+      return res.status(404).json({
+        ok: false,
+        msg: 'User not found',
+      })
+    }
+
+    res.json({
+      ok: true,
+      msg: 'User found',
+      user,
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({
+      ok: false,
+      msg: 'Error, try again or contact the administrator',
+    })
+  }
+}
+
+const updateUser = async (req, res = response) => {
+  const { id } = req.params
+  const { name, email, password } = req.body
+
+  try {
+    const user = await User.findById(id)
+
+    if (!user) {
+      return res.status(404).json({
+        ok: false,
+        msg: 'User not found',
+      })
+    }
+
+    if (name) {
+      user.name = name
+    }
+
+    if (email) {
+      user.email = email
+    }
+
+    if (password) {
+      const salt = bcrypt.genSaltSync()
+      user.password = bcrypt.hashSync(password, salt)
+    }
+
+    await user.save()
+
+    res.json({
+      ok: true,
+      msg: 'User updated',
+      user,
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({
+      ok: false,
+      msg: 'Error, try again or contact the administrator',
+    })
+  }
+}
+
+const getUsers = async (req, res = response) => {
+  try {
+    const users = await User.find()
+
+    res.json({
+      ok: true,
+      msg: 'Users found',
+      users,
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({
+      ok: false,
+      msg: 'Error, try again or contact the administrator',
+    })
+  }
+}
+
 module.exports = {
   createUser,
   loginUser,
   revalidateToken,
+  getUser,
+  updateUser,
+  getUsers,
 }
