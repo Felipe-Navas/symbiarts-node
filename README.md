@@ -1,49 +1,65 @@
-# README
+# Symbiarts Node
 
-This README would normally document whatever steps are necessary to get your application up and running.
+A Node app server for symbiarts-react
 
-### What is this repository for?
+## Description
 
-- Quick summary
-  - Symbiarts backend
-- Version: 1.0
-- [Author](https://www.linkedin.com/in/felipenavaslederhos)
+In this app I use a `express` and `mongo` to serve a react app.
 
-### How do I get set up?
+## Getting Started
 
-- Summary of set up
+### Dependencies
 
-  - `yarn`
-  - `npm install`
+- `npm`
+- `node`
 
-- How to run the app?
+### Installing
 
-  - `yarn start`
-  - `npm start`
+- Clone the repository and install dependencies:
 
-- How to run the tests?
+```
+git clone https://github.com/Felipe-Navas/symbiarts-node.git && cd symbiarts-node && npm install
+```
 
-  - `yarn test`
-  - `npm test`
+- Create a `.env` file in the root of the project and configure the following:
+    * Add the content of ".example.env" into your new ".env" file
+        * `PORT`: In this variable add the port number where the server will run
+        * `DB_CONNECTION`: mongodb+srv://user:password@micluster.asd123.mongodb.net/symbiarts_app
+            * Go to https://cloud.mongodb.com and create an user
+            * Create a new cluster
+            * Add a new Database User, in the section SECURITY -> Database Access
+            * Get the connection string in the section DEPLOYMENT -> Databases, clicking in "Connect"
+            * Modify the the password in your connection string
+        * `SECRET_JWT_SEED`: In this variable create a complex seed for the token generation
 
-- Dependencies
-    - "bcryptjs": "^2.4.3",
-    - "cors": "^2.8.5",
-    - "dotenv": "^16.0.1",
-    - "express": "^4.18.1",
-    - "express-validator": "^6.14.1",
-    - "jsonwebtoken": "^8.5.1",
-    - "mongoose": "^6.3.6"
+### Executing program
 
-- Dev dependencies
-    - "nodemon": "^2.0.16"
-### Contribution guidelines
+```
+npm start
+```
 
-- Writing tests
-- Code review
-- Other guidelines
+Preview of the console:
 
-### Who do I talk to?
+<img width="350" src="assets/ConsolePreview.png" alt="Preview of the console" />
 
-- Repo owner or admin
-- Other community or team contact
+### Running tests
+
+```
+npm test
+```
+
+## Authors
+
+- [Felipe Navas](https://www.linkedin.com/in/felipenavaslederhos) - [Email](mailto:felipenavas.itec@gmail.com?subject=[GitHub]%symbiarts-node)
+
+## Contributing
+
+1. Fork it (<https://github.com/Felipe-Navas/symbiarts-node/fork>)
+2. Create your feature branch (`git checkout -b feature/fooBar`)
+3. Commit your changes (`git commit -am 'Add some fooBar'`)
+4. Push to the branch (`git push origin feature/fooBar`)
+5. Create a new Pull Request
+
+## License
+
+This project is licensed under the [MIT License] - see the LICENSE file for details
